@@ -1,3 +1,11 @@
+class Market
+ #attr_reader
+  def initialize(name)
+
+  end
+
+end
+
 # A Vendor will be able to calculate their `potential_revenue` - the sum of all their items' price * quantity.
 #
 # A Market is responsible for keeping track of Vendors. It should have a method called `vendor_names` that returns an array of all the Vendor's names.
