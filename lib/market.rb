@@ -62,13 +62,13 @@ class Market
   def sell(item, amount)
       if total_inventory[item][:quantity] >= amount
         until sold_out?(item)
-          total_inventory[item][:vendors].each do |vendor|
-              vendor.sell(item, 1) unless vendor.check_stock(item) == 0
+          vendors_that_sell(item).each do |vendor|
+            until sold_out?(item) || vendor.inventory[item] == 0
+              vendor.sell(item, 1)
             end
-
-          # require "pry"; binding.pry
-          true
+          end
         end
+        true
       else
         false
     end
