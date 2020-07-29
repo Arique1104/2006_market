@@ -11,6 +11,12 @@ class Market
     @vendors << vendor
   end
 
+  def vendor_names
+    @vendors.map do |vendor|
+      vendor.name
+    end
+  end
+
 end
 
 # A Vendor will be able to calculate their `potential_revenue` - the sum of all their items' price * quantity.
