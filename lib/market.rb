@@ -47,7 +47,14 @@ class Market
     over_stocked
   end
 
-  # You `Market` will also be able to identify `overstocked_items`.  An item is overstocked if it is sold by more than 1 vendor AND the total quantity is greater than 50.
+  def sorted_item_list
+    items_list = []
+    total_inventory.keys.each do |item|
+      items_list << item.name
+    end
+    items_list.sort
+  end
+
 end
 
 # Add a method to your `Market` class called `sorted_item_list` that returns a list of names of all items the Vendors have in stock, sorted alphabetically. This list should not include any duplicate items.
