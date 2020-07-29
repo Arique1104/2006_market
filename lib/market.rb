@@ -32,15 +32,27 @@ class Market
       end
     end
     inventory_hash
-    # require "pry"; binding.pry
   end
 
+  def overstocked_items
+    over_stocked = []
+    result = total_inventory.find_all do |item, inventory_hash|
+      if inventory_hash[:quantity] > 50 && inventory_hash[:vendors].count > 1
+        item
+      end
+    end
+    result.each do |key,inventory|
+      over_stocked << key
+    end
+    over_stocked
+  end
+
+  # You `Market` will also be able to identify `overstocked_items`.  An item is overstocked if it is sold by more than 1 vendor AND the total quantity is greater than 50.
 end
 
 # Add a method to your `Market` class called `sorted_item_list` that returns a list of names of all items the Vendors have in stock, sorted alphabetically. This list should not include any duplicate items.
 #
-# Additionally, your `Market` class should have a method called `total_inventory` that reports the quantities of all items sold at the market. Specifically, it should return a hash with items as keys and hash as values - this sub-hash should have two key/value pairs: quantity pointing to total inventory for that item and vendors pointing to an array of the vendors that sell that item.
+
 #
-# You `Market` will also be able to identify `overstocked_items`.  An item is overstocked if it is sold by more than 1 vendor AND the total quantity is greater than 50.
 #
 # Use TDD to update your `Market` class so that it responds to the following interaction pattern:
