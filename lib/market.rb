@@ -7,6 +7,10 @@ class Market
 
   end
 
+  def add_vendor(vendor)
+    @vendors << vendor
+  end
+
 end
 
 # A Vendor will be able to calculate their `potential_revenue` - the sum of all their items' price * quantity.
