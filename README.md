@@ -24,52 +24,52 @@ The Market will need to keep track of its Vendors and their Items. Each Vendor w
 Use TDD to create a `Vendor` class that responds to the following interaction pattern:
 
 ```ruby
-pry(main)> require './lib/item'
+require './lib/item'
 #=> true
 
-pry(main)> require './lib/vendor'
+require './lib/vendor'
 #=> true
 
-pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
+item1 = Item.new({name: 'Peach', price: "$0.75"})
 #=> #<Item:0x007f9c56740d48...>
 
-pry(main)> item2 = Item.new({name: 'Tomato', price: '$0.50'})
+item2 = Item.new({name: 'Tomato', price: '$0.50'})
 #=> #<Item:0x007f9c565c0ce8...>
 
-pry(main)> item2.name
+item2.name
 #=> "Tomato"
 
-pry(main)> item2.price
+item2.price
 #=> 0.5
 
-pry(main)> vendor = Vendor.new("Rocky Mountain Fresh")
+vendor = Vendor.new("Rocky Mountain Fresh")
 #=> #<Vendor:0x00007f85683152f0...>
 
-pry(main)> vendor.name
+vendor.name
 #=> "Rocky Mountain Fresh"
 
-pry(main)> vendor.inventory
+vendor.inventory
 #=> {}
 
-pry(main)> vendor.check_stock(item1)
+vendor.check_stock(item1)
 #=> 0
 
-pry(main)> vendor.stock(item1, 30)
+vendor.stock(item1, 30)
 
-pry(main)> vendor.inventory
+vendor.inventory
 #=> {#<Item:0x007f9c56740d48...> => 30}
 
-pry(main)> vendor.check_stock(item1)
+vendor.check_stock(item1)
 #=> 30
 
-pry(main)> vendor.stock(item1, 25)
+vendor.stock(item1, 25)
 
-pry(main)> vendor.check_stock(item1)
+vendor.check_stock(item1)
 #=> 55
 
-pry(main)> vendor.stock(item2, 12)
+vendor.stock(item2, 12)
 
-pry(main)> vendor.inventory
+vendor.inventory
 #=> {#<Item:0x007f9c56740d48...> => 55, #<Item:0x007f9c565c0ce8...> => 12}
 ```
 
@@ -93,80 +93,80 @@ Additionally, the Market should have a method called `vendors_that_sell` that ta
 Use TDD to create a `Market` class that responds to the following interaction pattern:
 
 ```ruby
-pry(main)> require './lib/item'
+require './lib/item'
 #=> true
 
-pry(main)> require './lib/vendor'
+require './lib/vendor'
 #=> true
 
-pry(main)> require './lib/market'
+require './lib/market'
 #=> true
 
-pry(main)> market = Market.new("South Pearl Street Farmers Market")    
+market = Market.new("South Pearl Street Farmers Market")    
 #=> #<Market:0x00007fe134933e20...>
 
-pry(main)> market.name
+market.name
 #=> "South Pearl Street Farmers Market"
 
-pry(main)> market.vendors
+market.vendors
 #=> []
 
-pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
+vendor1 = Vendor.new("Rocky Mountain Fresh")
 #=> #<Vendor:0x00007fe1348a1160...>
 
-pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
+item1 = Item.new({name: 'Peach', price: "$0.75"})
 #=> #<Item:0x007f9c56740d48...>
 
-pry(main)> item2 = Item.new({name: 'Tomato', price: "$0.50"})
+item2 = Item.new({name: 'Tomato', price: "$0.50"})
 #=> #<Item:0x007f9c565c0ce8...>
 
-pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
+item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
 #=> #<Item:0x007f9c562a5f18...>
 
-pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
 #=> #<Item:0x007f9c56343038...>
 
-pry(main)> vendor1.stock(item1, 35)    
+vendor1.stock(item1, 35)    
 
-pry(main)> vendor1.stock(item2, 7)    
+vendor1.stock(item2, 7)    
 
-pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")    
+vendor2 = Vendor.new("Ba-Nom-a-Nom")    
 #=> #<Vendor:0x00007fe1349bed40...>
 
-pry(main)> vendor2.stock(item4, 50)    
+vendor2.stock(item4, 50)    
 
-pry(main)> vendor2.stock(item3, 25)
+vendor2.stock(item3, 25)
 
-pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")    
+vendor3 = Vendor.new("Palisade Peach Shack")    
 #=> #<Vendor:0x00007fe134910650...>
 
-pry(main)> vendor3.stock(item1, 65)  
+vendor3.stock(item1, 65)  
 
-pry(main)> market.add_vendor(vendor1)    
+market.add_vendor(vendor1)    
 
-pry(main)> market.add_vendor(vendor2)    
+market.add_vendor(vendor2)    
 
-pry(main)> market.add_vendor(vendor3)
+market.add_vendor(vendor3)
 
-pry(main)> market.vendors
+market.vendors
 #=> [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe1349bed40...>, #<Vendor:0x00007fe134910650...>]
 
-pry(main)> market.vendor_names
+market.vendor_names
 #=> ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
 
-pry(main)> market.vendors_that_sell(item1)
+market.vendors_that_sell(item1)
 #=> [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe134910650...>]
 
-pry(main)> market.vendors_that_sell(item4)
+market.vendors_that_sell(item4)
 #=> [#<Vendor:0x00007fe1349bed40...>]
 
-pry(main)> vendor1.potential_revenue
+vendor1.potential_revenue
 #=> 29.75
 
-pry(main)> vendor2.potential_revenue
+vendor2.potential_revenue
 #=> 345.00
 
-pry(main)> vendor3.potential_revenue
+vendor3.potential_revenue
 #=> 48.75  
 ```
 
@@ -188,58 +188,58 @@ You `Market` will also be able to identify `overstocked_items`.  An item is over
 Use TDD to update your `Market` class so that it responds to the following interaction pattern:
 
 ```ruby
-pry(main)> require './lib/item'
+require './lib/item'
 #=> true
 
-pry(main)> require './lib/vendor'
+require './lib/vendor'
 #=> true
 
-pry(main)> require './lib/market'
+require './lib/market'
 #=> true
 
-pry(main)> market = Market.new("South Pearl Street Farmers Market")    
+market = Market.new("South Pearl Street Farmers Market")    
 #=> #<Market:0x00007fe134933e20...>
 
-pry(main)> item1 = Item.new({name: "Peach", price: "$0.75"})
+item1 = Item.new({name: "Peach", price: "$0.75"})
 #=> #<Item:0x007f9c56740d48...>
 
-pry(main)> item2 = Item.new({name: "Tomato", price: "$0.50"})
+item2 = Item.new({name: "Tomato", price: "$0.50"})
 #=> #<Item:0x007f9c565c0ce8...>
 
-pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
+item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
 #=> #<Item:0x007f9c562a5f18...>
 
-pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
 #=> #<Item:0x007f9c56343038...>
 
-pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
+vendor1 = Vendor.new("Rocky Mountain Fresh")
 #=> #<Vendor:0x00007fe1348a1160...>
 
-pry(main)> vendor1.stock(item1, 35)    
+vendor1.stock(item1, 35)    
 
-pry(main)> vendor1.stock(item2, 7)    
+vendor1.stock(item2, 7)    
 
-pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")    
+vendor2 = Vendor.new("Ba-Nom-a-Nom")    
 #=> #<Vendor:0x00007fe1349bed40...>
 
-pry(main)> vendor2.stock(item4, 50)    
+vendor2.stock(item4, 50)    
 
-pry(main)> vendor2.stock(item3, 25)    
+vendor2.stock(item3, 25)    
 
-pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")    
+vendor3 = Vendor.new("Palisade Peach Shack")    
 #=> #<Vendor:0x00007fe134910650...>
 
-pry(main)> vendor3.stock(item1, 65)  
+vendor3.stock(item1, 65)  
 
-pry(main)> vendor3.stock(item3, 10)    
+vendor3.stock(item3, 10)    
 
-pry(main)> market.add_vendor(vendor1)    
+market.add_vendor(vendor1)    
 
-pry(main)> market.add_vendor(vendor2)    
+market.add_vendor(vendor2)    
 
-pry(main)> market.add_vendor(vendor3)    
+market.add_vendor(vendor3)    
 
-pry(main)> market.total_inventory
+market.total_inventory
 #=> {
   #   #<Item:0x007f9c56740d48...> => {
   #     quantity: 100,
@@ -259,10 +259,10 @@ pry(main)> market.total_inventory
   #   },
   # }
 
-pry(main)> market.overstocked_items
+market.overstocked_items
 #=> [#<Item:0x007f9c56740d48...>]
 
-pry(main)> market.sorted_item_list
+market.sorted_item_list
 #=> ["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"]
 ```
 
@@ -285,84 +285,84 @@ For example, suppose vendor1 has 35 `peaches` and vendor3 has 65 `peaches`, and 
 Use TDD to update the `Market` class so that it responds to the following interaction pattern:
 
 ```ruby
-pry(main)> require 'date'
+require 'date'
 #=> true
 
-pry(main)> require './lib/item'
+require './lib/item'
 #=> true
 
-pry(main)> require './lib/vendor'
+require './lib/vendor'
 #=> true
 
-pry(main)> require './lib/market'
+require './lib/market'
 #=> true
 
-pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
+item1 = Item.new({name: 'Peach', price: "$0.75"})
 #=> #<Item:0x007f9c56740d48...>
 
-pry(main)> item2 = Item.new({name: 'Tomato', price: '$0.50'})
+item2 = Item.new({name: 'Tomato', price: '$0.50'})
 #=> #<Item:0x007f9c565c0ce8...>
 
-pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
+item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
 #=> #<Item:0x007f9c562a5f18...>
 
-pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
 #=> #<Item:0x007f9c56343038...>
 
-pry(main)> item5 = Item.new({name: 'Onion', price: '$0.25'})
+item5 = Item.new({name: 'Onion', price: '$0.25'})
 #=> #<Item:0x007f9c561636c8...>
 
-pry(main)> market = Market.new("South Pearl Street Farmers Market")    
+market = Market.new("South Pearl Street Farmers Market")    
 #=> #<Market:0x00007fe134933e20...>
 
-pry(main)> market.date
+market.date
 #=> "24/02/2020"
 
 # A market will now be created with a date - whatever date the market is created on through the use of `Date.today`. The addition of a date to the market should NOT break any previous tests.  The `date` method will return a string representation of the date - 'dd/mm/yyyy'. We want you to test this in with a date that is IN THE PAST. In order to test the date method in a way that will work today, tomorrow and on any date in the future, you will need to use a stub :)
 
-pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
+vendor1 = Vendor.new("Rocky Mountain Fresh")
 #=> #<Vendor:0x00007fe1348a1160...>
 
-pry(main)> vendor1.stock(item1, 35)    
+vendor1.stock(item1, 35)    
 
-pry(main)> vendor1.stock(item2, 7)    
+vendor1.stock(item2, 7)    
 
-pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")    
+vendor2 = Vendor.new("Ba-Nom-a-Nom")    
 #=> #<Vendor:0x00007fe1349bed40...>
 
-pry(main)> vendor2.stock(item4, 50)    
+vendor2.stock(item4, 50)    
 
-pry(main)> vendor2.stock(item3, 25)    
+vendor2.stock(item3, 25)    
 
-pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")    
+vendor3 = Vendor.new("Palisade Peach Shack")    
 #=> #<Vendor:0x00007fe134910650...>
 
-pry(main)> vendor3.stock(item1, 65)    
+vendor3.stock(item1, 65)    
 
-pry(main)> market.add_vendor(vendor1)    
+market.add_vendor(vendor1)    
 
-pry(main)> market.add_vendor(vendor2)    
+market.add_vendor(vendor2)    
 
-pry(main)> market.add_vendor(vendor3)    
+market.add_vendor(vendor3)    
 
-pry(main)> market.sell(item1, 200)
+market.sell(item1, 200)
 #=> false
 
-pry(main)> market.sell(item5, 1)
+market.sell(item5, 1)
 #=> false
 
-pry(main)> market.sell(item4, 5)
+market.sell(item4, 5)
 #=> true
 
-pry(main)> vendor2.check_stock(item4)
+vendor2.check_stock(item4)
 #=> 45
 
-pry(main)> market.sell(item1, 40)
+market.sell(item1, 40)
 #=> true
 
-pry(main)> vendor1.check_stock(item1)
+vendor1.check_stock(item1)
 #=> 0
 
-pry(main)> vendor3.check_stock(item1)
+vendor3.check_stock(item1)
 #=> 60
 ```
