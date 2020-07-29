@@ -17,6 +17,12 @@ class Market
     end
   end
 
+  def vendors_that_sell(item)
+    @vendors.find_all do |vendor|
+      vendor.check_stock(item) != 0
+    end
+  end
+
 end
 
 # A Vendor will be able to calculate their `potential_revenue` - the sum of all their items' price * quantity.
