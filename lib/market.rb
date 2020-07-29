@@ -55,6 +55,10 @@ class Market
     items_list.sort
   end
 
+  def sell(item, amount)
+
+  end
+
 end
 
 # Add a method to your `Market` class called `sorted_item_list` that returns a list of names of all items the Vendors have in stock, sorted alphabetically. This list should not include any duplicate items.
